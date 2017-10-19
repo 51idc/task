@@ -18,7 +18,7 @@ package http
 import (
 	"net/http"
 
-	"github.com/open-falcon/task/index"
+	"github.com/51idc/task/index"
 )
 
 func configIndexHttpRoutes() {

@@ -27,12 +27,12 @@ import (
 	"time"
 
 	cmodel "github.com/open-falcon/common/model"
-	cron "github.com/toolkits/cron"
+	"github.com/51idc/cron"
 	nhttpclient "github.com/toolkits/http/httpclient"
 	ntime "github.com/toolkits/time"
 
-	"github.com/open-falcon/task/g"
-	"github.com/open-falcon/task/proc"
+	"github.com/51idc/task/g"
+	"github.com/51idc/task/proc"
 )
 
 var (

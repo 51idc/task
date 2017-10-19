@@ -20,11 +20,11 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/open-falcon/task/collector"
-	"github.com/open-falcon/task/g"
-	"github.com/open-falcon/task/http"
-	"github.com/open-falcon/task/index"
-	"github.com/open-falcon/task/proc"
+	"github.com/51idc/task/collector"
+	"github.com/51idc/task/g"
+	"github.com/51idc/task/http"
+	"github.com/51idc/task/index"
+	"github.com/51idc/task/proc"
 )
 
 func main() {

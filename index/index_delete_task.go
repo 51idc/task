@@ -20,10 +20,10 @@ import (
 	"time"
 
 	Mdb "github.com/open-falcon/common/db"
-	cron "github.com/toolkits/cron"
+	"github.com/51idc/cron"
 	ntime "github.com/toolkits/time"
 
-	"github.com/open-falcon/task/proc"
+	"github.com/51idc/task/proc"
 )
 
 const (

@@ -22,7 +22,7 @@ import (
 
 	"github.com/toolkits/file"
 
-	"github.com/open-falcon/task/g"
+	"github.com/51idc/task/g"
 )
 
 func configCommonRoutes() {

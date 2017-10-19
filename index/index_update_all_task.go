@@ -23,12 +23,12 @@ import (
 	"net/http"
 	"time"
 
-	cron "github.com/toolkits/cron"
+	"github.com/51idc/cron"
 	nhttpclient "github.com/toolkits/http/httpclient"
 	ntime "github.com/toolkits/time"
 
-	"github.com/open-falcon/task/g"
-	"github.com/open-falcon/task/proc"
+	"github.com/51idc/task/g"
+	"github.com/51idc/task/proc"
 )
 
 const (
@@ -43,7 +43,9 @@ var (
 func StartIndexUpdateAllTask() {
 	for graphAddr, cronSpec := range g.Config().Index.Cluster {
 		ga := graphAddr
-		indexUpdateAllCron.AddFuncCC(cronSpec, func() { UpdateIndexOfOneGraph(ga, "cron") }, 1)
+		indexUpdateAllCron.AddFuncCC(cronSpec, func() {
+			UpdateIndexOfOneGraph(ga, "cron")
+		}, 1)
 	}
 
 	indexUpdateAllCron.Start()
@@ -65,11 +67,11 @@ func UpdateIndexOfOneGraph(graphAddr string, src string) {
 	proc.IndexUpdateCnt.Incr()
 	if err == nil {
 		log.Printf("index update ok, %s, %s, start %s, ts %ds",
-			src, graphAddr, ntime.FormatTs(startTs), endTs-startTs)
+			src, graphAddr, ntime.FormatTs(startTs), endTs - startTs)
 	} else {
 		proc.IndexUpdateErrorCnt.Incr()
 		log.Printf("index update error, %s, %s, start %s, ts %ds, reason %v",
-			src, graphAddr, ntime.FormatTs(startTs), endTs-startTs, err)
+			src, graphAddr, ntime.FormatTs(startTs), endTs - startTs, err)
 	}
 }
 
@@ -78,33 +80,33 @@ func updateIndexOfOneGraph(hostNamePort string) error {
 		return fmt.Errorf("index update error, bad host")
 	}
 
-	client := nhttpclient.GetHttpClient("index.update."+hostNamePort, 5*time.Second, 10*time.Second)
+	client := nhttpclient.GetHttpClient("index.update." + hostNamePort, 5 * time.Second, 10 * time.Second)
 
 	destUrl := fmt.Sprintf(destUrlFmt, hostNamePort)
 	req, _ := http.NewRequest("GET", destUrl, nil)
 	req.Header.Set("Connection", "close")
 	getResp, err := client.Do(req)
 	if err != nil {
-		log.Printf(hostNamePort+", index update error,", err)
+		log.Printf(hostNamePort + ", index update error,", err)
 		return err
 	}
 	defer getResp.Body.Close()
 
 	body, err := ioutil.ReadAll(getResp.Body)
 	if err != nil {
-		log.Println(hostNamePort+", index update error,", err)
+		log.Println(hostNamePort + ", index update error,", err)
 		return err
 	}
 
 	var data Dto
 	err = json.Unmarshal(body, &data)
 	if err != nil {
-		log.Println(hostNamePort+", index update error,", err)
+		log.Println(hostNamePort + ", index update error,", err)
 		return err
 	}
 
 	if data.Data != "ok" {
-		log.Println(hostNamePort+", index update error, bad result,", data.Data)
+		log.Println(hostNamePort + ", index update error, bad result,", data.Data)
 		return err
 	}
 

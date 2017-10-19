@@ -20,7 +20,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"log"
 
-	"github.com/open-falcon/task/g"
+	"github.com/51idc/task/g"
 )
 
 var DB *sql.DB

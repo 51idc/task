@@ -18,7 +18,7 @@ package index
 import (
 	"log"
 
-	"github.com/open-falcon/task/g"
+	"github.com/51idc/task/g"
 )
 
 // 初始化索引功能模块

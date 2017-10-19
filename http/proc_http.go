@@ -18,7 +18,7 @@ package http
 import (
 	"net/http"
 
-	"github.com/open-falcon/task/proc"
+	"github.com/51idc/task/proc"
 )
 
 func configProcHttpRoutes() {

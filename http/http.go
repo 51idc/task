@@ -20,7 +20,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/open-falcon/task/g"
+	"github.com/51idc/task/g"
 )
 
 type Dto struct {
